@@ -1,5 +1,6 @@
 const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
+const ItemPage = require('../pageobjects/item.page');
 const Workflows = require('../workflows');
 const User = require('../objects/user');
 
@@ -39,11 +40,13 @@ describe('Sauce Demo', () => {
         await Workflows.Checkout(user, item);
     });
 
-    it.skip('should purchase single item added from item page', async () => {
-
+    it('should purchase single item added from item page', async () => {
+        let item = await InventoryPage.clickItemTitle();
+        await ItemPage.addToCart();
+        await Workflows.Checkout(user, item);
     });
 
-    it('should purchase multiple items added from inventory page', async () => {
+    it.skip('should purchase multiple items added from inventory page', async () => {
         let items = []
 
         for (let i = 1; i <= 3; i++) { 
