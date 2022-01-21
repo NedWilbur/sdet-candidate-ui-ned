@@ -1,4 +1,6 @@
 class CheckoutFinishPage  {
+    SuccessfulOrderHeader = 'THANK YOU FOR YOUR ORDER';
+
     /* Locators */
     get completeHeader() {
         return $('.complete-header');
