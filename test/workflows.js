@@ -6,6 +6,8 @@ const CheckoutCompletePage = require('./pageobjects/checkout/checkoutcomplete.pa
 
 class Workflows {
     async Checkout(user, items) {
+        items = [].concat(items); // convert into array if not already array
+
         await HeaderPage.clickOnCart();
 
         for (const item of items) {
