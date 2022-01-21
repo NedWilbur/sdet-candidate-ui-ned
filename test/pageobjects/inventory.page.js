@@ -1,4 +1,5 @@
 const Page = require('./page');
+const Item = require("../objects/item");
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -24,14 +25,30 @@ class InventoryPage extends Page {
         return this.itemContainerByIndex(index).$('.inventory_item_name');
     }
 
-    /* Methods */
-    addItemToCart(index = 1) { 
-        return this.itemAddButtonByIndex(index).click();
+    itemDescriptionButtonByIndex(index = 1) {
+        return this.itemContainerByIndex(index).$('.inventory_item_desc');
     }
 
-    clickItemTitle(index = 1) {
-        return this.itemTitleButtonByIndex(index).click();
+    itemPriceButtonByIndex(index = 1) {
+        return this.itemContainerByIndex(index).$('.inventory_item_price');
+    }   
+
+    /* Methods */
+    async addItemToCart(index = 1) { 
+        await this.itemAddButtonByIndex(index).click();
+    }
+
+    async clickItemTitle(index = 1) {
+        await this.itemTitleButtonByIndex(index).click();
     } 
+
+    async getItemDetails(index = 1) {
+        return await new Item(
+            await this.itemTitleButtonByIndex(index).getText(),
+            await this.itemDescriptionButtonByIndex(index).getText(),
+            await this.itemPriceButtonByIndex(index).getText(),
+        )
+    }
 }
 
 module.exports = new InventoryPage();
