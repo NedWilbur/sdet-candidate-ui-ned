@@ -5,10 +5,13 @@ const CheckoutOverviewPage = require('./pageobjects/checkout/checkoutoverview.pa
 const CheckoutCompletePage = require('./pageobjects/checkout/checkoutcomplete.page');
 
 class Workflows {
-    async Checkout(user) {
+    // TODO: Support an array of items
+    async Checkout(user, item) {
         await HeaderPage.clickOnCart();
+        await expect(await CartPage.cartItemExist(item)).toBe(true);
         await CartPage.clickCheckoutButton();
         await CheckoutInfoPage.inputInfo(user, true)
+        await expect(await CartPage.cartItemExist(item)).toBe(true);
         await CheckoutOverviewPage.clickFinishButton();
         await expect(CheckoutCompletePage.completeHeader).toHaveTextContaining(CheckoutCompletePage.SuccessfulOrderHeader);
     }
