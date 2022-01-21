@@ -36,10 +36,13 @@ class InventoryPage extends Page {
     /* Methods */
     async addItemToCart(index = 1) { 
         await this.itemAddButtonByIndex(index).click();
+        return await this.getItemDetails(index);
     }
 
     async clickItemTitle(index = 1) {
+        let item = await this.getItemDetails(index);
         await this.itemTitleButtonByIndex(index).click();
+        return item;
     } 
 
     async getItemDetails(index = 1) {
