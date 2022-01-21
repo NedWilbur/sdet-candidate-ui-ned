@@ -5,10 +5,10 @@ const CheckoutOverviewPage = require('./pageobjects/checkout/checkoutoverview.pa
 const CheckoutCompletePage = require('./pageobjects/checkout/checkoutcomplete.page');
 
 class Workflows {
-    async Checkout(firstName = "Swag", lastName = "Labs", zipCode = "12345") {
+    async Checkout(user) {
         await HeaderPage.clickOnCart();
         await CartPage.clickCheckoutButton();
-        await CheckoutInfoPage.inputInfo(firstName, lastName, zipCode, true)
+        await CheckoutInfoPage.inputInfo(user, true)
         await CheckoutOverviewPage.clickFinishButton();
         await expect(CheckoutCompletePage.completeHeader).toHaveTextContaining(CheckoutCompletePage.SuccessfulOrderHeader);
     }
