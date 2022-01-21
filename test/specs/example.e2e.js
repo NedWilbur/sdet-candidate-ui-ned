@@ -56,7 +56,7 @@ describe('Sauce Demo', () => {
         await Workflows.Checkout(user, items);
     });
 
-    it('should purchase multiple items added from inventory page', async () => {
+    it.skip('should purchase multiple items added from inventory page', async () => {
         let items = []
         
         for (let i = 1; i <= 3; i++) { 
@@ -68,7 +68,7 @@ describe('Sauce Demo', () => {
         await Workflows.Checkout(user, items);
     });
 
-    it.skip('should purchase multiple items added from inventory and item page', async () => {
+    it('should purchase multiple items added from inventory and item page', async () => {
         let items = []
         
         for (let i = 1; i <= 2; i++) { 
