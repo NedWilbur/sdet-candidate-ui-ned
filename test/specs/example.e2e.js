@@ -34,7 +34,7 @@ describe('Sauce Demo', () => {
         await Workflows.Checkout(user, items);
     });
 
-    it('should purchase single item added from inventory page', async () => {
+    it.skip('should purchase single item added from inventory page', async () => {
         let item = await InventoryPage.addItemToCart();
         await Workflows.Checkout(user, item);
     });
@@ -43,8 +43,14 @@ describe('Sauce Demo', () => {
 
     });
 
-    it.skip('should purchase multiple items added from inventory page', async () => {
-    
+    it('should purchase multiple items added from inventory page', async () => {
+        let items = []
+
+        for (let i = 1; i <= 3; i++) { 
+            items.push(await InventoryPage.addItemToCart(i));
+        }
+
+        await Workflows.Checkout(user, items);
     });
 
     it.skip('should purchase multiple items added from inventory page', async () => {
