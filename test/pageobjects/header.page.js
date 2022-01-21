@@ -9,8 +9,8 @@ class HeaderPage  {
     }
 
     /* Methods */        
-    clickOnCart() {
-        return this.shoppingCartButton.click();
+    async clickOnCart() {
+        await this.shoppingCartButton.click();
     }
 }
 
